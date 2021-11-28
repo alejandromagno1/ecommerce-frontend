@@ -4,11 +4,11 @@ import { NbMenuModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
+import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
 import { ProductsModule } from './products/products.module';
 
 // import { DashboardModule } from './dashboard/dashboard.module';
-// import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 // import { AgenciesModule } from './agencies/agencies.module';
 // import { RolesModule } from './roles/roles.module';
 // import { UsersModule } from './users/users.module';
@@ -22,10 +22,10 @@ import { ProductsModule } from './products/products.module';
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
-    ProductsModule
+    MiscellaneousModule,
+    ProductsModule,
     
     // DashboardModule,
-    // MiscellaneousModule,
     // AgenciesModule,
     // RolesModule,
     // UsersModule,

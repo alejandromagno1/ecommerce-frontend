@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ThemeModule } from '../../@theme/theme.module';
-import { NbCardModule, NbIconModule, NbInputModule, NbButtonModule, NbActionsModule, 
+import { NbCardModule, NbListModule, NbIconModule, NbInputModule, NbButtonModule, NbActionsModule, 
           NbSelectModule, NbTabsetModule, NbDatepickerModule, NbToggleModule, NbRadioModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ProductsComponent } from './pages/products.component';
@@ -12,6 +12,7 @@ import { DialogComponent } from './components/dialog.component';
   declarations: [ProductsComponent, DialogComponent],
   imports: [
     NbCardModule,
+    NbListModule,
     NbIconModule,
     NbInputModule,
     NbSelectModule,

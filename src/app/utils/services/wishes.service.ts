@@ -20,6 +20,10 @@ export class WishesService {
     return this.http.get(API_URL + this.path + id);
   }
 
+  getByUsrProd(idUser: number, idProd: number){
+    return this.http.get(API_URL + this.path + 'validate/' + idUser + '/' + idProd);
+  }
+
   add(data: Wishes): Observable<Wishes> {
     return this.http.post<Wishes>(API_URL + this.path, data);
   }

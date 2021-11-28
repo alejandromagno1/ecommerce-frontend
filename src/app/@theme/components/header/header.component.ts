@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 import { Router } from '@angular/router';
 // import { GraphService } from '../../../utils/services/GraphService';
-import { MsalService } from '@azure/msal-angular';
 import { IUsers } from '../../../utils/interfaces/gobal.interfaces';
 
 import { UserData } from '../../../@core/data/users';
@@ -50,9 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
-              private msalService: MsalService,
               private userService: UserData,
-              // private graphService: GraphService,
               private router: Router,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService) {
@@ -60,9 +57,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-    // if (this.msalService.instance.getActiveAccount()) {
-    //   this.graphService.getUserPhoto().subscribe(photo => this.photo = photo);
-    // }
 
     this.userService.getUsers()
     .pipe(takeUntil(this.destroy$))
@@ -87,7 +81,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (event.item.title === 'Cerrar sesión') {
           localStorage.clear();
           // sessionStorage.clear();
-          this.msalService.logout();
         }
       });
   }

@@ -1,8 +1,10 @@
 import { Component, Input, AfterContentInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { NbDialogRef, NbDateService, NbSelectComponent } from '@nebular/theme';
 import { NebularInputsUtils } from '../../../@core/utils/nebularInputsUtils';
-// import { AnswersService } from '../../../utils/services/answers.service';
-// import { IQuestions, IAnswers } from '../../../utils/interfaces/gobal.interfaces';
+import { ISales, IProducts } from '../../../utils/interfaces/gobal.interfaces';
+
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ngx-dialog-questions',
@@ -10,91 +12,59 @@ import { NebularInputsUtils } from '../../../@core/utils/nebularInputsUtils';
   styleUrls: ['dialog.component.scss'],
 })
 export class DialogComponent implements AfterContentInit {
+  dataI: IProducts;
+  saleI: ISales;
+
   submitted: boolean;
-  selected: number;
-  count: number;
-  // dataI: IAnswers;
+  quantity: number = 0;
+  total: number = 0;
   
-  sequences: number[] = [];
-
-  toggleNgModel: boolean = false;
-
-  //variables de opciones del formulario
   @Input()
-  title: string = '';
+  currentData: IProducts;
 
-  @Input()
-  option: string = '';
-
-  @Input()
-  isEdit: boolean;
-
-  // @Input()
-  // questions: IQuestions[] = []; 
-
-  // @Input()
-  // currentData: IAnswers; 
-
-  //Definición de los select para nebular y definir un valor por defecto en el constructor
-  @ViewChild('nbstate', { static: true })
-  public nbstate: NbSelectComponent = null;   //Select de estado del role
-
-  //Funciones del users.component.ts
+  //Funciones del xxx.component.ts
   @Input()
   save: Function;
 
   @Input()
-  update: Function;
+  wishes: Function;
   
-  constructor(//private serviceA: AnswersService,
-              protected ref: NbDialogRef<DialogComponent>,
+  constructor(protected ref: NbDialogRef<DialogComponent>,
               protected dateService: NbDateService<Date>,
               private refC: ChangeDetectorRef) {
     
-    // this.dataI = {};
+    this.dataI = {};
+    this.saleI = {};
   }
     
   ngAfterContentInit() {
-    // if (this.currentData) {
-    //   this.dataI = this.currentData
-    //   this.onChangeOrder(this.dataI.idQuestion);
-
-    //   if (this.dataI.state) this.toggleNgModel = true;
-    // }else {
-    //   NebularInputsUtils.setOptionNbSelect(this.nbstate, 1);
-    // }
+    if (this.currentData) {
+      this.dataI = this.currentData
+    }
   }
 
-  // onChangeOrder(id: number){
-  //   this.serviceA.getAllByQuest(id)
-  //     .subscribe(resp => {
-  //       this.count = resp['object'].length;
-  //       this.sequences = [];
+  onChangeQuantity(und: number){
+    this.total = this.dataI.price * und;
+  }
 
-  //       if (this.count > 0) {
-  //         for (let i = 0; i < this.count; i++) {
-  //           this.sequences.push(i+1);
-  //         }
-  //       }
-  //       if (!this.isEdit) this.sequences.push(this.sequences.length + 1)
-  //     });
-  // }
+  onWishes(){
+    this.wishes(this.dataI);
+  }
 
-  // cancel() {
-  //   this.ref.close();
-  // }
+  cancel() {
+    this.ref.close();
+  }
 
-  // submit() {
-  //   if (this.toggleNgModel) {
-  //     this.dataI.state = true;
-  //   } else{
-  //     this.dataI.state = false;
-  //   }
+  submit() {
+    let dateString = moment().format('YYYY-MM-DD');
+    let newDate = new Date(dateString);
 
-  //   if (!this.isEdit) {
-  //     this.save(this.dataI, this.ref);
-  //   } else {
-  //     this.update(this.dataI, this.ref);  
-  //   }
-  // }
+    this.saleI.idUser = 2;
+    this.saleI.idProduct = this.dataI.id;
+    this.saleI.quantity = this.quantity;
+    this.saleI.dateSale = newDate;
+    this.saleI.state = false;
+    
+    this.save(this.saleI, this.ref);
+  }
 }
