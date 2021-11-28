@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../constants/constants';
 import { Observable } from 'rxjs';
-import { Users } from '../models/users';
+import { Wishes } from '../models/wishes';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class WishesService {
   constructor(private http: HttpClient) { }
 
-  path: string = '/users/';
+  path: string = '/wishes/';
 
   getAll() {
     return this.http.get(API_URL + this.path);
@@ -20,11 +20,11 @@ export class UsersService {
     return this.http.get(API_URL + this.path + id);
   }
 
-  add(data: Users): Observable<Users> {
-    return this.http.post<Users>(API_URL + this.path, data);
+  add(data: Wishes): Observable<Wishes> {
+    return this.http.post<Wishes>(API_URL + this.path, data);
   }
 
-  update(data: Users): Observable<Users> {
-    return this.http.put<Users>(API_URL + this.path + data.id, data);
+  update(data: Wishes): Observable<Wishes> {
+    return this.http.put<Wishes>(API_URL + this.path + data.id, data);
   }
 }

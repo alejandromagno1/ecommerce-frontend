@@ -1,7 +1,9 @@
-export class Roles {
+export class Sales {
     id?: number;
-    nameRol?: string;
-    admin?: boolean;
+    idUser?: number;
+    idProduct?: number;
+    quantity?: number;
+    dateSale?: Date;
     state?: boolean;
     resultStatus?: string;
     errorMessage?: string;

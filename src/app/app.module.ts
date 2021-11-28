@@ -20,18 +20,6 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { MsalModule, MsalService, MSAL_INSTANCE } from '@azure/msal-angular';
-import { IPublicClientApplication, PublicClientApplication } from '@azure/msal-browser';
-
-export function MSALInstanceFactory(): IPublicClientApplication{
-  return new PublicClientApplication({
-    auth:{
-      clientId: '14f8f078-3dc4-451c-a3d8-49b67d61319e',
-      redirectUri: 'https://assembly.coprocenva.com/assembly',
-      postLogoutRedirectUri: 'https://www.coprocenva.coop'
-    }
-  })
-}
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,16 +37,8 @@ export function MSALInstanceFactory(): IPublicClientApplication{
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
-    MsalModule,
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-  ],
-  providers: [
-    {
-    provide: MSAL_INSTANCE,
-    useFactory: MSALInstanceFactory
-    },
-    MsalService
   ],
   bootstrap: [AppComponent],
 })

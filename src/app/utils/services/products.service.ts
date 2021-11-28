@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../constants/constants';
 import { Observable } from 'rxjs';
-import { Roles } from '../models/roles';
+import { Products } from '../models/products';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RolesService {
+export class ProductsService {
   constructor(private http: HttpClient) { }
 
-  path: string = '/roles/';
+  path: string = '/products/';
 
   getAll() {
     return this.http.get(API_URL + this.path);
@@ -20,15 +20,15 @@ export class RolesService {
     return this.http.get(API_URL + this.path + 'actives');
   }
 
-  getAllById(id: Number) {
+  getById(id: Number) {
     return this.http.get(API_URL + this.path + id);
   }
 
-  add(data: Roles): Observable<Roles> {
-    return this.http.post<Roles>(API_URL + this.path, data);
+  add(data: Products): Observable<Products> {
+    return this.http.post<Products>(API_URL + this.path, data);
   }
 
-  update(data: Roles): Observable<Roles> {
-    return this.http.put<Roles>(API_URL + this.path + data.id, data);
+  update(data: Products): Observable<Products> {
+    return this.http.put<Products>(API_URL + this.path + data.id, data);
   }
 }

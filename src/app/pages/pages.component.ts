@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MENU_ITEMS, MENU_ITEMS_BAS } from './pages-menu';
+import { MENU_ADMIN, MENU_CUSTOMER } from './pages-menu';
 import { IUsers } from '../utils/interfaces/gobal.interfaces';
 import { NbMenuItem } from '@nebular/theme';
 
@@ -15,17 +15,19 @@ import { NbMenuItem } from '@nebular/theme';
 })
 export class PagesComponent implements OnInit {
   
-  menu = MENU_ITEMS;
+  menu = MENU_ADMIN;
   appMenu: NbMenuItem[] = [];
   userApp: IUsers = JSON.parse(localStorage.getItem('currentUser'));
 
   constructor () { }
 
   ngOnInit(): void {
-    if (this.userApp.idRol == 1) {
-      this.appMenu = MENU_ITEMS;
-    } else {
-      this.appMenu = MENU_ITEMS_BAS;
-    }
+    this.appMenu = MENU_CUSTOMER;
+
+    // if (this.userApp.idRol == 1) {
+    //   this.appMenu = MENU_ADMIN;
+    // } else {
+    //   this.appMenu = MENU_CUSTOMER;
+    // }
   }
 }

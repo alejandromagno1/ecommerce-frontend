@@ -1,0 +1,10 @@
+<nb-card [size]="'giant'">
+  <nb-card-header>Lista de productos</nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let prod of products">
+        {{ prod.name }}
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

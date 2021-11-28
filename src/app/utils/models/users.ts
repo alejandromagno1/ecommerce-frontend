@@ -1,13 +1,10 @@
 export class Users {
     id?: number;
-    user?: string;
-    pass?: string;
-    name?: string;
-    mail?: string;
     idRol?: number;
-    idAgency?: number;
-    data?: boolean;
-    enabled?: boolean;
+    user?: string;
+    pwd?: string;
+    nameUser?: string;
+    eMail?: string;
     state?: boolean;
     resultStatus?: string;
     errorMessage?: string;

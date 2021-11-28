@@ -2,29 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../constants/constants';
 import { Observable } from 'rxjs';
-import { Users } from '../models/users';
+import { Sales } from '../models/sales';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class SalesService {
   constructor(private http: HttpClient) { }
 
-  path: string = '/users/';
+  path: string = '/sales/';
 
   getAll() {
     return this.http.get(API_URL + this.path);
   }
 
-  getAllById(id: Number) {
+  getAllById(id: number) {
     return this.http.get(API_URL + this.path + id);
   }
 
-  add(data: Users): Observable<Users> {
-    return this.http.post<Users>(API_URL + this.path, data);
+  add(data: Sales): Observable<Sales> {
+    return this.http.post<Sales>(API_URL + this.path, data);
   }
 
-  update(data: Users): Observable<Users> {
-    return this.http.put<Users>(API_URL + this.path + data.id, data);
+  update(data: Sales): Observable<Sales> {
+    return this.http.put<Sales>(API_URL + this.path, data);
   }
 }

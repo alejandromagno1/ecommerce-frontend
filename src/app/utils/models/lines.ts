@@ -1,7 +1,6 @@
-export class Roles {
+export class Lines {
     id?: number;
-    nameRol?: string;
-    admin?: boolean;
+    nameLine?: string;
     state?: boolean;
     resultStatus?: string;
     errorMessage?: string;

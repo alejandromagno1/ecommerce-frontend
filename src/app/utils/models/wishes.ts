@@ -1,7 +1,7 @@
-export class Roles {
+export class Wishes {
     id?: number;
-    nameRol?: string;
-    admin?: boolean;
+    idUser?: number;
+    idProduct?: number;
     state?: boolean;
     resultStatus?: string;
     errorMessage?: string;

@@ -1,79 +1,56 @@
-export interface IAgencies {
+export interface IUsers {
     id?: number;
-    name?: string;
+    idRol?: number;
+    user?: string;
+    pwd?: string;
+    nameUser?: string;
+    eMail?: string;
     state?: boolean;
     resultStatus?: string;
 }
 
 export interface IRoles {
     id?: number;
-    name?: string;
+    nameRol?: string;
+    admin?: boolean;
     state?: boolean;
     resultStatus?: string;
 }
 
-export interface IUsers {
+export interface ILines {
     id?: number;
-    user?: string;
-    pass?: string;
-    name?: string;
-    mail?: string;
-    idRol?: number;
-    idAgency?: number;
-    data?: boolean;
-    enabled?: boolean;
+    nameLine?: string;
     state?: boolean;
     resultStatus?: string;
 }
 
-export interface IQuestions {
+export interface IProducts {
     id?: number;
-    idType?: number;
-    seq?: number;
-    question?: string;
-    enabled?: boolean;
+    idLine?: number;
+    nameProd?: string;
+    descProd?: string;
+    price?: number;
+    stock?: number;
+    minimum?: number;
+    urlPicture?: string
     state?: boolean;
     resultStatus?: string;
 }
 
-export interface IAnswers {
-    id?: number;
-    idQuestion?: number;
-    seq?: number;
-    answer?: string;
-    state?: boolean;
-    resultStatus?: string;
-}
-
-export interface IUserVotes {
+export interface ISales {
     id?: number;
     idUser?: number;
-    idQuestion?: number;
-    idAnswer?: number;
+    idProduct?: number;
+    quantity?: number;
+    dateSale?: Date;
+    state?: boolean;
     resultStatus?: string;
 }
 
-export interface IOnLine {
+export interface IWishes {
     id?: number;
     idUser?: number;
-    resultStatus?: string;
-}
-
-export interface IEnabledVotes {
-    totalUsr?: number;
-    totalOnline?: number;
-    totalVotes?: number;
-    resultStatus?: string;
-}
-
-export interface ICountVotes {
-    answer?: string;
-    totalVotes?: number;
-    resultStatus?: string;
-}
-
-export interface IUsersVotes {
-    name?: string;
-    agency?: string;
+    idProduct?: number;
+    state?: boolean;
     resultStatus?: string;
 }
