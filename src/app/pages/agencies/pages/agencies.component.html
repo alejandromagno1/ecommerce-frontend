@@ -1,0 +1,30 @@
+<nb-card>
+  <nb-card-header>
+    Agencias
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row">
+      <div class="col-6 col-sm-6 col-md-8">
+        <button nbButton [status]="statusBtnSearch" 
+                (click)="activeFilter()">
+                {{labelSearch}}
+        </button>
+      </div>
+      <div class="col-6 col-sm-6 col-md-4">
+        <button nbButton 
+                status="primary" 
+                style="float: right;"
+                (click)="openDialogsaveUpdate($event, 'add')">
+                {{labelAdd}}
+        </button>
+      </div>
+    </div>
+    <hr>
+    <ng2-smart-table *ngIf="tableEnable" 
+                      [settings]="settings" 
+                      [source]="source"
+                      (edit)="openDialogsaveUpdate($event, 'edit')">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

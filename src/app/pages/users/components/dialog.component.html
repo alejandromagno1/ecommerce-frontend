@@ -1,0 +1,193 @@
+<nb-card class="col-12 col-sm-12 col-md-12" fullWidth>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12" fullWidth>
+        <nb-tabset>
+          <nb-tab tabTitle="Datos del usuario">
+            <form #form="ngForm" (ngSubmit)="submit()">
+              <div class="form-group row">
+                <div class="col-5 col-sm-5 col-md-5">
+                  <label for="user" class="label">Usuario</label>
+                  <input nbInput
+                      fullWidth
+                      id="user"
+                      name="user"
+                      #userm="ngModel"
+                      type="text"
+                      pattern="[A-Za-z]*"
+                      autocomplete="off"
+                      [minlength]=4
+                      [maxlength]=30
+                      [required]="true"
+                      [disabled]="isEdit"
+                      [(ngModel)]="dataI.user"
+                      [status]="userm.dirty || userm.touched ? (userm.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="userm.invalid && userm.touched ? true : null">
+                    
+                  <ng-container *ngIf="userm.invalid && userm.touched">
+                    <p class="caption status-danger" *ngIf="userm.errors?.required">
+                      ¡El usuario es requerido!
+                    </p>
+                    <p class="caption status-danger" *ngIf="userm.errors?.pattern">
+                      ¡Por favor no ingrese caracteres especiales!
+                    </p>
+                    <p class="caption status-danger" *ngIf="userm.errors?.minlength || userm.errors?.maxlength">
+                      El usuario debe tener mínimo 4 y máximo 30 caracteres
+                    </p>
+                  </ng-container>                    
+                </div>
+
+                <div class="col-7 col-sm-7 col-md-7">
+                  <label for="name" class="label">Nombre</label>
+                  <input nbInput
+                      fullWidth
+                      id="name"
+                      name="name"
+                      #namec="ngModel"
+                      type="text"
+                      pattern="[A-Za-zÀ-ÿ\u00f1\u00d1 ]*"
+                      autocomplete="off"
+                      [minlength]=4
+                      [maxlength]=60
+                      [required]="true"
+                      [(ngModel)]="dataI.name"
+                      [status]="namec.dirty || namec.touched ? (namec.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="namec.invalid && namec.touched ? true : null">
+                    
+                  <ng-container *ngIf="namec.invalid && namec.touched">
+                    <p class="caption status-danger" *ngIf="namec.errors?.required">
+                      ¡El nombre es requerido!
+                    </p>
+                    <p class="caption status-danger" *ngIf="namec.errors?.pattern">
+                      ¡Por favor no ingrese caracteres especiales!
+                    </p>
+                    <p class="caption status-danger" *ngIf="namec.errors?.minlength || namec.errors?.maxlength">
+                      El nombre debe tener mínimo 4 y máximo 60 caracteres
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-12 col-sm-12 col-md-12">
+                  <label for="mail" class="label">Correo</label>
+                  <input nbInput
+                      fullWidth
+                      id="mail"
+                      name="mail"
+                      #email="ngModel"
+                      pattern=".+@.+\..+"
+                      autocomplete="off"
+                      [required]="true"
+                      [(ngModel)]="dataI.mail"
+                      [status]="email.dirty || email.touched ? (email.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+  
+                  <ng-container *ngIf="email.invalid && email.touched">
+                    <p class="caption status-danger" *ngIf="email.errors?.required">
+                      ¡El correo es requerido!
+                    </p>
+                    <p class="caption status-danger" *ngIf="email.errors?.pattern">
+                      ¡El Correo debe ser valido!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+            
+
+              <div class="form-group row">
+                <div class="col-6 col-sm-6 col-md-6">
+                  <label for="agency" class="label">Agencia</label>
+                  <nb-select fullWidth
+                    id="agency"
+                    name="agency"
+                    #agencyM="ngModel"
+                    [(ngModel)]="dataI.idAgency"
+                    [required]="true"
+                    [status]="agencyM.dirty || agencyM.touched ? (agencyM.invalid  ? 'danger' : 'success') : 'basic'"
+                    [attr.aria-invalid]="agencyM.invalid && agencyM.touched ? true : null">
+                    <nb-option *ngFor="let opc of agencies" [value]="opc.id">{{opc.name}}</nb-option>
+                  </nb-select>
+
+                  <ng-container *ngIf="agencyM.invalid && agencyM.touched">
+                    <p class="caption status-danger" *ngIf="agencyM.errors?.required">
+                      ¡La agencia es requerida!
+                    </p>
+                  </ng-container>
+                </div>
+
+                <div class="col-6 col-sm-6 col-md-6">
+                  <label for="role" class="label">Rol</label>
+                  <nb-select fullWidth
+                    id="role"
+                    name="role"
+                    #roleM="ngModel"
+                    [(ngModel)]="dataI.idRol"
+                    [required]="true"
+                    [status]="roleM.dirty || roleM.touched ? (roleM.invalid  ? 'danger' : 'success') : 'basic'"
+                    [attr.aria-invalid]="roleM.invalid && roleM.touched ? true : null">
+                    <nb-option *ngFor="let opc of roles" [value]="opc.id">{{opc.name}}</nb-option>
+                  </nb-select>
+
+                  <ng-container *ngIf="roleM.invalid && roleM.touched">
+                    <p class="caption status-danger" *ngIf="roleM.errors?.required">
+                      ¡El rol es requerido!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-4 col-sm-4 col-md-4">
+                  <nb-card-body class="example-items-rows">
+                    <nb-toggle 
+                      id="enabled"
+                      name="enabled"
+                      status="success"
+                      labelPosition="start"
+                      [(ngModel)]="Suffragent">Sufragante
+                    </nb-toggle>
+                  </nb-card-body>
+                </div>
+
+                <div class="col-4 col-sm-4 col-md-4">
+                  <nb-card-body class="example-items-rows">
+                    <nb-toggle 
+                      id="state"
+                      name="state"
+                      status="success"
+                      labelPosition="start"
+                      [(ngModel)]="toggleNgModel">Estado
+                    </nb-toggle>
+                  </nb-card-body>
+                </div>
+
+                <div class="col-4 col-sm-4 col-md-4">
+                  <nb-checkbox
+                    id="habeas"
+                    [checked]="data" disabled>Tratamiendo de datos
+                  </nb-checkbox>
+                </div>
+              </div>
+            </form>
+          </nb-tab>
+        </nb-tabset>            
+      </div>
+    </div>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <!-- <button nbButton  *ngIf='isEdit' status="warning" (click)="resetPass()" style="float: left;">Resetear Clave</button> -->
+    <button nbButton status="danger" (click)="cancel()" style="float: right;">Cancelar</button>
+    <button nbButton
+          status="success"
+          class="submit"
+          style="float: right;"
+          (click)="submit()"
+          [disabled]="submitted || !form.valid"
+          [class.btn-pulse]="submitted">
+          Guardar
+    </button>
+  </nb-card-footer>
+</nb-card>
