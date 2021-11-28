@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 
+import { NgxLoginComponent } from './auth/login/login.component';
 import { ProductsComponent } from './products/pages/products.component';
+import { WishesComponent } from './wishes/pages/wishes.component';
+import { ShoppingComponent } from './shopping/pages/shopping.component';
 
-// import { QuestionsComponent } from './lines/pages/questions.component';
-// import { AgenciesComponent } from './adminProd/pages/agencies.component';
-// import { UserVotesComponent } from './shopping/pages/userVotes.component';
-// import { ControlVotesComponent } from './wishes/pages/controlVotes.component';
+
 
 // import { RolesComponent } from './roles/pages/roles.component';
 // import { UsersComponent } from './users/pages/users.component';
@@ -21,8 +21,20 @@ const routes: Routes = [{
   children: [
 
     {
+      path: 'auth',
+      component: NgxLoginComponent,
+    },
+    {
       path: 'products',
       component: ProductsComponent,
+    },
+    {
+      path: 'wishes',
+      component: WishesComponent,
+    },
+    {
+      path: 'shopping',
+      component: ShoppingComponent,
     },
 
     // {
@@ -39,7 +51,7 @@ const routes: Routes = [{
     // },
     {
       path: '',
-      redirectTo: 'products',
+      redirectTo: 'auth',
       pathMatch: 'full',
     },
     {

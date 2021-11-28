@@ -1,0 +1,35 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  input {
+    width: 100%;
+  }
+
+  .submit {
+    margin-right: 1rem;
+  }
+}
+
+@include nb-install-component() {
+  nb-card {
+    width: 60rem;
+
+    
+    // display: flex;
+    // max-width: 80%;
+    // max-height: 100%;
+    // width: 900px;
+    // max-width: 900px;
+    // max-height: 600px;
+  }
+}
+
+nb-tabset {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+}

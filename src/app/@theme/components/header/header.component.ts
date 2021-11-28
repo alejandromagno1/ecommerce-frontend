@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 import { Router } from '@angular/router';
 // import { GraphService } from '../../../utils/services/GraphService';
-import { IUsers } from '../../../utils/interfaces/gobal.interfaces';
+import { IUsersL } from '../../../utils/interfaces/gobal.interfaces';
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userPictureOnly: boolean = false;
   user: any;
   photo: any;
-  userApp: IUsers = JSON.parse(localStorage.getItem('currentUser'));
+  userApp: IUsersL = JSON.parse(localStorage.getItem('currentUser'));
 
   themes = [
     {
@@ -80,6 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.menuService.onItemClick().subscribe((event) => {
         if (event.item.title === 'Cerrar sesión') {
           localStorage.clear();
+          location.href = 'http://localhost:4200/pages/auth';
           // sessionStorage.clear();
         }
       });

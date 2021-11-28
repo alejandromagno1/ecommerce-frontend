@@ -16,6 +16,10 @@ export class UsersService {
     return this.http.get(API_URL + this.path);
   }
 
+  getLogin(user: string, passwd: string){
+    return this.http.get(API_URL + this.path + 'login/' + user + '/' + passwd);
+  }
+
   getAllById(id: Number) {
     return this.http.get(API_URL + this.path + id);
   }
@@ -25,6 +29,6 @@ export class UsersService {
   }
 
   update(data: Users): Observable<Users> {
-    return this.http.put<Users>(API_URL + this.path + data.id, data);
+    return this.http.put<Users>(API_URL + this.path, data);
   }
 }

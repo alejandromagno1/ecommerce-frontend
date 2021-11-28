@@ -29,6 +29,10 @@ export class WishesService {
   }
 
   update(data: Wishes): Observable<Wishes> {
-    return this.http.put<Wishes>(API_URL + this.path + data.id, data);
+    return this.http.put<Wishes>(API_URL + this.path, data);
+  }
+
+  delete(idUser: Number, idProd: number): Observable<Wishes> {
+    return this.http.delete(API_URL + this.path + idUser + '/' + idProd);
   }
 }

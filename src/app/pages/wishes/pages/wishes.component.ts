@@ -12,11 +12,11 @@ import { Sales } from '../../../utils/models/sales';
 import { Products } from '../../../utils/models/products';
 
 @Component({
-  selector: 'ngx-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'ngx-wishes',
+  templateUrl: './wishes.component.html',
+  styleUrls: ['./wishes.component.scss']
 })
-export class ProductsComponent {
+export class WishesComponent {
   products: IProducts[] = [];
   data: Wishes;
 
@@ -35,7 +35,7 @@ export class ProductsComponent {
   }
 
   loadAll() {
-    this.prodService.getAllActives()
+    this.prodService.getAllWishes(2)
       .subscribe(resp => {
         this.products = resp['object'];
       });
@@ -79,6 +79,32 @@ export class ProductsComponent {
         this.toastrComponent.makeToast(this.status, this.tittle, this.content);
        }
     })
+  }
+
+  delWishes(prod: IProducts){
+    this.tittle = 'Información';
+    this.content = 'Retirando producto de la lista de deseos';
+    this.status = this.toastrComponent.types[0];
+
+    this.toastrComponent.makeToast(this.status, this.tittle, this.content);
+     
+    this.wishesService.delete(2, prod.id)
+      .subscribe(resp => {
+
+        if(resp.resultStatus == 'OK'){
+          this.tittle = 'Información';
+          this.content = 'Se ha eliminado con éxito el producto de la lista de deseos';
+          this.status = this.toastrComponent.types[1];
+
+          this.loadAll(); 
+        }else{
+          this.tittle = 'Advertencia';
+          this.content = 'No se pudo eliminar el producto en la lista de deseos, comunicarse con las lineas de aternción al usuario por favor';
+          this.status = this.toastrComponent.types[2];
+        }
+
+        this.toastrComponent.makeToast(this.status, this.tittle, this.content);
+      });
   }
 
   buy(prod: IProducts){

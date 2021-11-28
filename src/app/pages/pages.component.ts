@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MENU_ADMIN, MENU_CUSTOMER } from './pages-menu';
-import { IUsers } from '../utils/interfaces/gobal.interfaces';
+import { IUsersL } from '../utils/interfaces/gobal.interfaces';
 import { NbMenuItem } from '@nebular/theme';
 
 @Component({
@@ -14,20 +14,19 @@ import { NbMenuItem } from '@nebular/theme';
   `,
 })
 export class PagesComponent implements OnInit {
-  
   menu = MENU_ADMIN;
   appMenu: NbMenuItem[] = [];
-  userApp: IUsers = JSON.parse(localStorage.getItem('currentUser'));
+  userApp: IUsersL = JSON.parse(localStorage.getItem('currentUser'));
 
   constructor () { }
 
   ngOnInit(): void {
-    this.appMenu = MENU_CUSTOMER;
-
-    // if (this.userApp.idRol == 1) {
-    //   this.appMenu = MENU_ADMIN;
-    // } else {
-    //   this.appMenu = MENU_CUSTOMER;
-    // }
+    if (this.userApp) {
+      if (this.userApp.admin) {
+        this.appMenu = MENU_ADMIN;
+      } else {
+        this.appMenu = MENU_CUSTOMER;
+      }
+    }
   }
 }

@@ -29,6 +29,6 @@ export class RolesService {
   }
 
   update(data: Roles): Observable<Roles> {
-    return this.http.put<Roles>(API_URL + this.path + data.id, data);
+    return this.http.put<Roles>(API_URL + this.path, data);
   }
 }

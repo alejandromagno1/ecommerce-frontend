@@ -18,6 +18,10 @@ export class ProductsService {
 
   getAllActives() {
     return this.http.get(API_URL + this.path + 'actives');
+  
+  }
+  getAllWishes(idUser: number) {
+    return this.http.get(API_URL + this.path + 'wishes/' + idUser);
   }
 
   getById(id: Number) {
@@ -29,6 +33,6 @@ export class ProductsService {
   }
 
   update(data: Products): Observable<Products> {
-    return this.http.put<Products>(API_URL + this.path + data.id, data);
+    return this.http.put<Products>(API_URL + this.path, data);
   }
 }

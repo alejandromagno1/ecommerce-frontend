@@ -40,16 +40,16 @@ export const MENU_CUSTOMER: NbMenuItem[] = [
     link: '/pages/products',
     home: true,
   },
-  // {
-  //   title: 'Deseos',
-  //   icon: 'shopping-bag-outline',
-  //   link: '/pages/wishes',
-  //   home: true,
-  // },
-  // {
-  //   title: 'Compras',
-  //   icon: 'shopping-bag-outline',
-  //   link: '/pages/shopping',
-  //   home: true,
-  // }
+  {
+    title: 'Deseos',
+    icon: 'star-outline',
+    link: '/pages/wishes',
+    home: true,
+  },
+  {
+    title: 'Compras',
+    icon: 'shopping-cart-outline',
+    link: '/pages/shopping',
+    home: true,
+  }
 ];

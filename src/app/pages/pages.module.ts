@@ -6,15 +6,13 @@ import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
+import { NgxAuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
+import { WishesModule } from './wishes/wishes.module';
+import { ShoppingModule } from './shopping/shopping.module';
 
-// import { DashboardModule } from './dashboard/dashboard.module';
-// import { AgenciesModule } from './agencies/agencies.module';
 // import { RolesModule } from './roles/roles.module';
 // import { UsersModule } from './users/users.module';
-// import { QuestionsModule } from './questions/questions.module';
-// import { userVotesModule } from './votes/userVotes.module';
-// import { controlVotesModule } from './controlVotes/controlVotes.module';
 // import { InitialModule } from './initial/initial.module';
 
 @NgModule({
@@ -23,16 +21,14 @@ import { ProductsModule } from './products/products.module';
     ThemeModule,
     NbMenuModule,
     MiscellaneousModule,
+    NgxAuthModule,
     ProductsModule,
+    WishesModule,
+    ShoppingModule
     
-    // DashboardModule,
-    // AgenciesModule,
     // RolesModule,
     // UsersModule,
-    // QuestionsModule,
-    // userVotesModule,
-    // controlVotesModule,
-    // InitialModule,
+     // InitialModule,
   ],
   declarations: [
     PagesComponent,

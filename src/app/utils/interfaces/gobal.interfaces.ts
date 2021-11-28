@@ -9,6 +9,18 @@ export interface IUsers {
     resultStatus?: string;
 }
 
+export interface IUsersL {
+    id?: number;
+    idRol?: number;
+    user?: string;
+    pwd?: string;
+    nameUser?: string;
+    eMail?: string;
+    admin?: boolean;
+    state?: boolean;
+    resultStatus?: string;
+}
+
 export interface IRoles {
     id?: number;
     nameRol?: string;
@@ -33,6 +45,17 @@ export interface IProducts {
     stock?: number;
     minimum?: number;
     urlPicture?: string
+    state?: boolean;
+    resultStatus?: string;
+}
+
+export interface IProductsDTO {
+    name?: string;
+    description?: string;
+    price?: number;
+    picture?: string
+    quantity?: number;
+    dateSale?: Date;
     state?: boolean;
     resultStatus?: string;
 }

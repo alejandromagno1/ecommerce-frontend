@@ -1,0 +1,31 @@
+<nb-card [size]="'giant'">
+  <nb-card-header>Compras realizadas</nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let prod of products">
+        <table>
+          <tr>
+            <td rowspan="2" style="width: 25%; text-align: center;">
+              <img [src]="prod.picture" width="150" height="150">
+            </td>
+            <td>
+              <b>{{ prod.name }}</b>
+            </td>
+            <td style="width: 25%;">
+              <p><b>Fecha compra:</b> {{ prod.dateSale }}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>{{ prod.description }}</p>
+            </td>
+            <td>
+              <p><b>Cantidad:</b> {{ prod.quantity }}</p>
+              <p><b>Total compra:</b> ${{prod.quantity * prod.price }}</p>
+            </td>
+          </tr>
+        </table>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,30 @@
+<nb-card [size]="'giant'">
+  <nb-card-header>Lista de deseos</nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let prod of products">
+        <table>
+          <tr>
+            <td rowspan="2" style="width: 25%; text-align: center;">
+              <img [src]="prod.urlPicture" width="150" height="150">
+            </td>
+            <td>
+              <b>{{ prod.nameProd }}</b>
+            </td>
+            <td style="width: 20%;">
+              <button nbButton hero fullwidth status="success" (click)="buy(prod)" style="float: right;">Comrpar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>{{ prod.descProd }}</p>
+            </td>
+            <td>
+              <button nbButton hero fullwidth status="danger" (click)="delWishes(prod)" style="float: right;">Retirar deseo</button>
+            </td>
+          </tr>
+        </table>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

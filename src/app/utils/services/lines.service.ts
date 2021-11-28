@@ -29,6 +29,6 @@ export class LinesService {
   }
 
   update(data: Lines): Observable<Lines> {
-    return this.http.put<Lines>(API_URL + this.path + data.id, data);
+    return this.http.put<Lines>(API_URL + this.path, data);
   }
 }

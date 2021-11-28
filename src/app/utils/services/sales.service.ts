@@ -16,6 +16,10 @@ export class SalesService {
     return this.http.get(API_URL + this.path);
   }
 
+  getAllShopping(idUser: number){
+    return this.http.get(API_URL + this.path + 'shopping/' + idUser);
+  }
+
   getAllById(id: number) {
     return this.http.get(API_URL + this.path + id);
   }
