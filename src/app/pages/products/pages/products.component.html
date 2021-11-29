@@ -18,6 +18,10 @@
           <tr>
             <td>
               <p>{{ prod.descProd }}</p>
+              <p *ngIf="prod.stock != 0"><b>Unidades disponibles:</b> {{ prod.stock }}</p>
+              <p class="caption status-danger" *ngIf="prod.stock == 0" style="font-size: medium;">
+                ¡No hay unidades disponibles!
+              </p>
             </td>
             <td>
               <button nbButton hero fullwidth status="info" (click)="wishes(prod)" style="float: right;">Lista deseos</button>

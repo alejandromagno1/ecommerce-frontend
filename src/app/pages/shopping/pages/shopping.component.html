@@ -22,6 +22,7 @@
             <td>
               <p><b>Cantidad:</b> {{ prod.quantity }}</p>
               <p><b>Total compra:</b> ${{prod.quantity * prod.price }}</p>
+              <p><b>Estado:</b> {{ prod.state ? 'Despachado' : 'En tramite' }}</p>
             </td>
           </tr>
         </table>

@@ -1,7 +1,7 @@
 import { Component, Input, AfterContentInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { NbDialogRef, NbDateService, NbSelectComponent } from '@nebular/theme';
 import { NebularInputsUtils } from '../../../@core/utils/nebularInputsUtils';
-import { ISales, IProducts } from '../../../utils/interfaces/gobal.interfaces';
+import { ISales, IProducts, IUsersL } from '../../../utils/interfaces/gobal.interfaces';
 
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
@@ -28,6 +28,8 @@ export class DialogComponent implements AfterContentInit {
 
   @Input()
   wishes: Function;
+
+  userApp: IUsersL = JSON.parse(localStorage.getItem('currentUser'));
   
   constructor(protected ref: NbDialogRef<DialogComponent>,
               protected dateService: NbDateService<Date>,
@@ -59,7 +61,7 @@ export class DialogComponent implements AfterContentInit {
     let dateString = moment().format('YYYY-MM-DD');
     let newDate = new Date(dateString);
 
-    this.saleI.idUser = 2;
+    this.saleI.idUser = this.userApp.id;
     this.saleI.idProduct = this.dataI.id;
     this.saleI.quantity = this.quantity;
     this.saleI.dateSale = newDate;

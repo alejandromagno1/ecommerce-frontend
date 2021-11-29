@@ -1,0 +1,219 @@
+<nb-card class="col-12 col-sm-12 col-md-12" fullWidth>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12" fullWidth>
+        <nb-tabset>
+          <nb-tab tabTitle="Datos del producto">
+            <form #form="ngForm" (ngSubmit)="submit()">
+              <div class="form-group row">
+                <div class="col-6 col-sm-6 col-md-6">
+                  <label for="name" class="label">Nombre</label>
+                  <input nbInput
+                      fullWidth
+                      id="name"
+                      name="name"
+                      #namec="ngModel"
+                      type="text"
+                      pattern="[A-Za-zÀ-ÿ\u00f1\u00d1 ]*"
+                      autocomplete="off"
+                      [minlength]=4
+                      [maxlength]=60
+                      [required]="true"
+                      [(ngModel)]="dataI.nameProd"
+                      [status]="namec.dirty || namec.touched ? (namec.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="namec.invalid && namec.touched ? true : null">
+                    
+                  <ng-container *ngIf="namec.invalid && namec.touched">
+                    <p class="caption status-danger" *ngIf="namec.errors?.required">
+                      ¡El nombre es requerido!
+                    </p>
+                    <p class="caption status-danger" *ngIf="namec.errors?.pattern">
+                      ¡Por favor no ingrese caracteres especiales!
+                    </p>
+                    <p class="caption status-danger" *ngIf="namec.errors?.minlength || namec.errors?.maxlength">
+                      El nombre debe tener mínimo 4 y máximo 60 caracteres
+                    </p>
+                  </ng-container>
+                </div>
+
+                <div class="col-6 col-sm-6 col-md-6">
+                  <label for="line" class="label">Linea</label>
+                  <nb-select fullWidth
+                    id="line"
+                    name="line"
+                    #line="ngModel"
+                    [(ngModel)]="dataI.idLine"
+                    [required]="true"
+                    [status]="line.dirty || line.touched ? (line.invalid  ? 'danger' : 'success') : 'basic'"
+                    [attr.aria-invalid]="line.invalid && line.touched ? true : null">
+                    <nb-option *ngFor="let opc of lines" [value]="opc.id">{{opc.nameLine}}</nb-option>
+                  </nb-select>
+
+                  <ng-container *ngIf="line.invalid && line.touched">
+                    <p class="caption status-danger" *ngIf="line.errors?.required">
+                      ¡La linea es requerida!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-12 col-sm-12 col-md-12">
+                  <label for="desc" class="label">Descripción</label>
+                  <input nbInput
+                      fullWidth
+                      id="desc"
+                      name="desc"
+                      #desc="ngModel"
+                      pattern="[A-Za-zÀ-ÿ\u00f1\u00d1 ]*]"
+                      autocomplete="off"
+                      [minlength]=10
+                      [maxlength]=200
+                      [required]="true"
+                      [(ngModel)]="dataI.descProd"
+                      [status]="desc.dirty || desc.touched ? (desc.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="desc.invalid && desc.touched ? true : null">
+  
+                  <ng-container *ngIf="desc.invalid && desc.touched">
+                    <p class="caption status-danger" *ngIf="desc.errors?.required">
+                      ¡La descripción es requerida!
+                    </p>
+                    <p class="caption status-danger" *ngIf="desc.errors?.minlength || desc.errors?.maxlength">
+                      La descripción debe tener mínimo 10 y máximo 200 caracteres
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <div class="col-3 col-sm-3 col-md-3">
+                  <label for="price" class="label">Precio</label>
+                  <input nbInput
+                      fullWidth
+                      id="price"
+                      name="price"
+                      #priceM="ngModel"
+                      type="text"
+                      pattern="[0-9]*"
+                      autocomplete="off"
+                      [required]="true"
+                      [(ngModel)]="dataI.price"
+                      [status]="priceM.dirty || priceM.touched ? (priceM.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="priceM.invalid && priceM.touched ? true : null">
+                    
+                  <ng-container *ngIf="priceM.invalid && priceM.touched">
+                    <p class="caption status-danger" *ngIf="priceM.errors?.required">
+                      ¡El precio es requerido!
+                    </p>
+                    <p class="caption status-danger" *ngIf="priceM.errors?.pattern">
+                      ¡Por favor solo ingrese números!
+                    </p>
+                  </ng-container>
+                </div>
+
+                <div class="col-3 col-sm-3 col-md-3">
+                  <label for="stock" class="label">Stock</label>
+                  <input nbInput
+                      fullWidth
+                      id="stock"
+                      name="stock"
+                      #stockM="ngModel"
+                      type="text"
+                      pattern="[0-9]*"
+                      autocomplete="off"
+                      [required]="true"
+                      [(ngModel)]="dataI.stock"
+                      [status]="stockM.dirty || stockM.touched ? (stockM.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="stockM.invalid && stockM.touched ? true : null">
+                    
+                  <ng-container *ngIf="stockM.invalid && stockM.touched">
+                    <p class="caption status-danger" *ngIf="stockM.errors?.required">
+                      ¡El stock es requerido!
+                    </p>
+                    <p class="caption status-danger" *ngIf="stockM.errors?.pattern">
+                      ¡Por favor solo ingrese números!
+                    </p>
+                  </ng-container>
+                </div>
+
+                <div class="col-3 col-sm-3 col-md-3">
+                  <label for="minStock" class="label">Mínimo minStock</label>
+                  <input nbInput
+                      fullWidth
+                      id="minStock"
+                      name="minStock"
+                      #minStockM="ngModel"
+                      type="text"
+                      pattern="[0-9]*"
+                      autocomplete="off"
+                      [required]="true"
+                      [(ngModel)]="dataI.minimum"
+                      [status]="minStockM.dirty || minStockM.touched ? (minStockM.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="minStockM.invalid && minStockM.touched ? true : null">
+                    
+                  <ng-container *ngIf="minStockM.invalid && minStockM.touched">
+                    <p class="caption status-danger" *ngIf="minStockM.errors?.required">
+                      ¡El mínimo de stock es requerido!
+                    </p>
+                    <p class="caption status-danger" *ngIf="minStockM.errors?.pattern">
+                      ¡Por favor solo ingrese números!
+                    </p>
+                  </ng-container>
+                </div>
+
+                <div class="col-3 col-sm-3 col-md-3">
+                  <nb-card-body class="example-items-rows">
+                    <nb-toggle 
+                      id="state"
+                      name="state"
+                      status="success"
+                      labelPosition="start"
+                      [(ngModel)]="toggleNgModel">Estado
+                    </nb-toggle>
+                  </nb-card-body>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-12 col-sm-12 col-md-12">
+                  <label for="urlPic" class="label">URL imagen</label>
+                  <input nbInput
+                      fullWidth
+                      id="urlPic"
+                      name="urlPic"
+                      #urlPic="ngModel"
+                      pattern="[A-Za-zÀ-ÿ\u00f1\u00d1 ]*]"
+                      autocomplete="off"
+                      [required]="true"
+                      [(ngModel)]="dataI.urlPicture"
+                      [status]="urlPic.dirty || urlPic.touched ? (urlPic.invalid  ? 'danger' : 'success') : 'basic'"
+                      [attr.aria-invalid]="urlPic.invalid && urlPic.touched ? true : null">
+  
+                  <ng-container *ngIf="urlPic.invalid && urlPic.touched">
+                    <p class="caption status-danger" *ngIf="urlPic.errors?.required">
+                      ¡La imagen es requerida!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+            </form>
+          </nb-tab>
+        </nb-tabset>            
+      </div>
+    </div>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <button nbButton status="danger" (click)="cancel()" style="float: right;">Cancelar</button>
+    <button nbButton
+          status="success"
+          class="submit"
+          style="float: right;"
+          (click)="submit()"
+          [disabled]="submitted || !form.valid"
+          [class.btn-pulse]="submitted">
+          Guardar
+    </button>
+  </nb-card-footer>
+</nb-card>

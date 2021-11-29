@@ -8,12 +8,10 @@ import { NgxLoginComponent } from './auth/login/login.component';
 import { ProductsComponent } from './products/pages/products.component';
 import { WishesComponent } from './wishes/pages/wishes.component';
 import { ShoppingComponent } from './shopping/pages/shopping.component';
-
-
-
-// import { RolesComponent } from './roles/pages/roles.component';
-// import { UsersComponent } from './users/pages/users.component';
-// import { InitialComponent } from './initial/pages/initial.component';
+import { UsersComponent } from './users/pages/users.component';
+import { RolesComponent } from './roles/pages/roles.component';
+import { LinesComponent } from './lines/pages/lines.component';
+import { AdminProdComponent } from './adminProd/pages/adminProd.component';
 
 const routes: Routes = [{
   path: '',
@@ -36,19 +34,22 @@ const routes: Routes = [{
       path: 'shopping',
       component: ShoppingComponent,
     },
-
-    // {
-    //   path: 'initial',
-    //   component: InitialComponent,
-    // },
-    // {
-    //   path: 'users',
-    //   component: UsersComponent,
-    // },
-    // {
-    //   path: 'roles',
-    //   component: RolesComponent,
-    // },
+    {
+      path: 'users',
+      component: UsersComponent,
+    },
+    {
+      path: 'roles',
+      component: RolesComponent,
+    },
+    {
+      path: 'lines',
+      component: LinesComponent,
+    },
+    {
+      path: 'adminProd',
+      component: AdminProdComponent,
+    },
     {
       path: '',
       redirectTo: 'auth',

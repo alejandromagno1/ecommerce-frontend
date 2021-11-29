@@ -4,7 +4,7 @@ export class Users {
     user?: string;
     pwd?: string;
     nameUser?: string;
-    eMail?: string;
+    email?: string;
     state?: boolean;
     resultStatus?: string;
     errorMessage?: string;

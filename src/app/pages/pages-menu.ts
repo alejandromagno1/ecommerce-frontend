@@ -7,30 +7,30 @@ export const MENU_ADMIN: NbMenuItem[] = [
   //   link: '/pages/sendings',
   //   home: true,
   // },
-  // {
-  //   title: 'Lineas',
-  //   icon: 'shield-outline',
-  //   link: '/pages/lines',
-  //   home: true,
-  // },
-  // {
-  //   title: 'Productos',
-  //   icon: 'shopping-bag-outline',
-  //   link: '/pages/adminProd',
-  //   home: true,
-  // },
-  // {
-  //   title: 'Roles',
-  //   icon: 'layers-outline',
-  //   link: '/pages/roles',
-  //   home: true,
-  // },
-  // {
-  //   title: 'Usuarios',
-  //   icon: 'people-outline',
-  //   link: '/pages/users',
-  //   home: true,
-  // },
+  {
+    title: 'Lineas',
+    icon: 'shield-outline',
+    link: '/pages/lines',
+    home: true,
+  },
+  {
+    title: 'Productos',
+    icon: 'shopping-bag-outline',
+    link: '/pages/adminProd',
+    home: true,
+  },
+  {
+    title: 'Roles',
+    icon: 'layers-outline',
+    link: '/pages/roles',
+    home: true,
+  },
+  {
+    title: 'Usuarios',
+    icon: 'people-outline',
+    link: '/pages/users',
+    home: true,
+  },
 ];
 
 export const MENU_CUSTOMER: NbMenuItem[] = [

@@ -6,7 +6,7 @@ import { DialogComponent } from '../components/dialog.component';
 import { ProductsService } from '../../../utils/services/products.service';
 import { WishesService } from '../../../utils/services/wishes.service';
 import { SalesService } from '../../../utils/services/sales.service';
-import { IProducts } from '../../../utils/interfaces/gobal.interfaces';
+import { IProducts, IUsersL } from '../../../utils/interfaces/gobal.interfaces';
 import { Wishes } from '../../../utils/models/wishes';
 import { Sales } from '../../../utils/models/sales';
 import { Products } from '../../../utils/models/products';
@@ -24,6 +24,8 @@ export class WishesComponent {
   content: string
   status: string;
 
+  userApp: IUsersL = JSON.parse(localStorage.getItem('currentUser'));
+
   constructor(private prodService: ProductsService,
               private wishesService: WishesService,
               private saleService: SalesService,
@@ -35,75 +37,81 @@ export class WishesComponent {
   }
 
   loadAll() {
-    this.prodService.getAllWishes(2)
+    this.prodService.getAllWishes(this.userApp.id)
       .subscribe(resp => {
         this.products = resp['object'];
       });
   }
 
   wishes(prod: IProducts){
-    this.wishesService.getByUsrProd(2, prod.id)
-      .subscribe(validate => {
+    this.wishesService.getByUsrProd(this.userApp.id, prod.id)
+      .subscribe(result => {
+        if(!result['object']){
+          this.data.id = 0;
+          this.data.idUser = this.userApp.id;
+          this.data.idProduct = prod.id;
+          this.data.state = true;
+      
+          this.tittle = 'Información';
+          this.content = 'Guardando en la lista de deseo';
+          this.status = this.toastrComponent.types[0];
+      
+          this.toastrComponent.makeToast(this.status, this.tittle, this.content);
+      
+          this.wishesService.add(this.data)
+            .subscribe(resp => {
+      
+              if(resp.resultStatus == 'OK'){
+                this.tittle = 'Información';
+                this.content = 'Se ha guardado con éxito en la lista de deseos';
+                this.status = this.toastrComponent.types[1];
+              }else{
+                this.tittle = 'Advertencia';
+                this.content = 'No se pudo guardar el producto en la lista de deseos, comunicarse con las lineas de aternción al usuario por favor';
+                this.status = this.toastrComponent.types[2];
+              }
+      
+              this.toastrComponent.makeToast(this.status, this.tittle, this.content);
+            });
+        } else {
+          this.tittle = 'Advertencia';
+          this.content = 'El producto ya se encuentra en la lista de deseos';
+          this.status = this.toastrComponent.types[2];
 
-       if(!validate['object']){
-         this.data.idUser = 2;
-         this.data.idProduct = prod.id;
-         this.data.state = true;
-     
-         this.tittle = 'Información';
-         this.content = 'Guardando en la lista de deseo';
-         this.status = this.toastrComponent.types[0];
-     
-         this.toastrComponent.makeToast(this.status, this.tittle, this.content);
-     
-         this.wishesService.add(this.data)
-           .subscribe(resp => {
-     
-             if(resp.resultStatus == 'OK'){
-               this.tittle = 'Información';
-               this.content = 'Se ha guardado con éxito en la lista de deseos';
-               this.status = this.toastrComponent.types[1];
-             }else{
-               this.tittle = 'Advertencia';
-               this.content = 'No se pudo guardar el producto en la lista de deseos, comunicarse con las lineas de aternción al usuario por favor';
-               this.status = this.toastrComponent.types[2];
-             }
-     
-             this.toastrComponent.makeToast(this.status, this.tittle, this.content);
-           });
-       } else {
-        this.tittle = 'Advertencia';
-        this.content = 'El producto ya se encuentra en la lista de deseos';
-        this.status = this.toastrComponent.types[2];
-
-        this.toastrComponent.makeToast(this.status, this.tittle, this.content);
-       }
-    })
+          this.toastrComponent.makeToast(this.status, this.tittle, this.content);
+        }
+    });
   }
 
   delWishes(prod: IProducts){
-    this.tittle = 'Información';
-    this.content = 'Retirando producto de la lista de deseos';
-    this.status = this.toastrComponent.types[0];
+    this.wishesService.getByUsrProd(this.userApp.id, prod.id)
+      .subscribe(result => {
+        this.data = result['object'];
+        this.data.state = false;
 
-    this.toastrComponent.makeToast(this.status, this.tittle, this.content);
-     
-    this.wishesService.delete(2, prod.id)
-      .subscribe(resp => {
-
-        if(resp.resultStatus == 'OK'){
-          this.tittle = 'Información';
-          this.content = 'Se ha eliminado con éxito el producto de la lista de deseos';
-          this.status = this.toastrComponent.types[1];
-
-          this.loadAll(); 
-        }else{
-          this.tittle = 'Advertencia';
-          this.content = 'No se pudo eliminar el producto en la lista de deseos, comunicarse con las lineas de aternción al usuario por favor';
-          this.status = this.toastrComponent.types[2];
-        }
-
+        this.tittle = 'Información';
+        this.content = 'Retirando producto de la lista de deseos';
+        this.status = this.toastrComponent.types[0];
+    
         this.toastrComponent.makeToast(this.status, this.tittle, this.content);
+        
+        this.wishesService.update(this.data)
+          .subscribe(resp => {
+    
+            if(resp.resultStatus == 'OK'){
+              this.tittle = 'Información';
+              this.content = 'Se ha eliminado con éxito el producto de la lista de deseos';
+              this.status = this.toastrComponent.types[1];
+    
+              this.loadAll(); 
+            }else{
+              this.tittle = 'Advertencia';
+              this.content = 'No se pudo eliminar el producto en la lista de deseos, comunicarse con las lineas de aternción al usuario por favor';
+              this.status = this.toastrComponent.types[2];
+            }
+    
+            this.toastrComponent.makeToast(this.status, this.tittle, this.content);
+          });
       });
   }
 

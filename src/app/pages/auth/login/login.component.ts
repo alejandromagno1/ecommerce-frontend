@@ -12,7 +12,7 @@ export class NgxLoginComponent {
   userI: IUsersL;
 
   submitted: boolean;
-  urlRedirectA: string = 'http://localhost:4200/pages/adminProd';
+  urlRedirectA: string = 'http://localhost:4200/pages/users';
   urlRedirectC: string = 'http://localhost:4200/pages/products';
 
   constructor(private userService: UsersService) {

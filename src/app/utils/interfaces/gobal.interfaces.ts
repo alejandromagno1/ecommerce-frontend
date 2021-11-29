@@ -4,7 +4,7 @@ export interface IUsers {
     user?: string;
     pwd?: string;
     nameUser?: string;
-    eMail?: string;
+    email?: string;
     state?: boolean;
     resultStatus?: string;
 }
@@ -15,7 +15,7 @@ export interface IUsersL {
     user?: string;
     pwd?: string;
     nameUser?: string;
-    eMail?: string;
+    email?: string;
     admin?: boolean;
     state?: boolean;
     resultStatus?: string;

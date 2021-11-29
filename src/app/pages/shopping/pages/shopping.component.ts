@@ -4,7 +4,7 @@ import { NbDialogService } from '@nebular/theme';
 import { ToastrComponent } from '../../../@core/utils/toastr.component';
 import { DialogComponent } from '../components/dialog.component';
 import { SalesService } from '../../../utils/services/sales.service';
-import { IProductsDTO } from '../../../utils/interfaces/gobal.interfaces';
+import { IProductsDTO, IUsersL } from '../../../utils/interfaces/gobal.interfaces';
 
 @Component({
   selector: 'ngx-shopping',
@@ -18,6 +18,8 @@ export class ShoppingComponent {
   content: string
   status: string;
 
+  userApp: IUsersL = JSON.parse(localStorage.getItem('currentUser'));
+
   constructor(private saleService: SalesService,
               private dialogService: NbDialogService,
               private toastrComponent: ToastrComponent) {
@@ -26,7 +28,7 @@ export class ShoppingComponent {
   }
 
   loadAll() {
-    this.saleService.getAllShopping(2)
+    this.saleService.getAllShopping(this.userApp.id)
       .subscribe(resp => {
         this.products = resp['object'];
       });
