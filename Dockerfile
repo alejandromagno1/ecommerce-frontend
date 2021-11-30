@@ -11,7 +11,7 @@ RUN npm install
 
 COPY . /app
 
-RUN ng build --configuration production
+CMD ng build --configuration production
 
 #Segunda Etapa
 FROM nginx:1.17.1-alpine
