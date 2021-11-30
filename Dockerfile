@@ -11,9 +11,9 @@ RUN npm install
 
 COPY . /app
 
-RUN ng build --configuration production
+RUN npm run build --prod
 
 #Segunda Etapa
 FROM nginx:1.17.1-alpine
 
-COPY --from=build-step /app/dist/ /usr/share/nginx/html
+COPY --from=build-step /app/dist/ecommerce /usr/share/nginx/html
