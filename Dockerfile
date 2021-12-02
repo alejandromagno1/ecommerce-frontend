@@ -6,7 +6,7 @@ FROM node:latest as build
 WORKDIR /usr/src/app
 
 # Add the source code to app
-COPY package.json package-lock.son ./
+COPY package.json package-lock.json ./
 
 # Install all the dependencies
 RUN npm install
