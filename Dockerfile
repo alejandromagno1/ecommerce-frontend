@@ -3,23 +3,27 @@
 FROM node:latest as build
 
 # Set the working directory
-WORKDIR /usr/local/app
+WORKDIR /usr/src/app
 
 # Add the source code to app
-COPY ./ /usr/local/app/
+COPY package.json package-lock.son ./
 
 # Install all the dependencies
 RUN npm install
 
+COPY . .
+
 # Generate the build of the application
-CMD ng build --configuration production
+RUN npm run build
 
 # Stage 2: Serve app with nginx server
 # Use official nginx image as the base image
 FROM nginx:latest
 
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /usr/local/app/dist /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 8890
