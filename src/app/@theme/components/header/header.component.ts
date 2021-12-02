@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.menuService.onItemClick().subscribe((event) => {
         if (event.item.title === 'Cerrar sesión') {
           localStorage.clear();
-          location.href = 'http://localhost:4200/pages/auth';
+          location.href = 'http://192.168.1.7:8890/pages/auth';
           // sessionStorage.clear();
         }
       });
